@@ -23,8 +23,8 @@ const Contact = () => {
 					>
 						<h1 className="font-semibold text-xl text-white mb-3">{category.title}</h1>
 						<ul className="text-white mb-2">
-							{category.items.map((item) => (
-								<li>{item}</li>
+							{category.items.map((item, id) => (
+								<li key={id}>{item}</li>
 							))}
 						</ul>
 					</div>

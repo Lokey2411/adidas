@@ -2,13 +2,12 @@ import React, { useContext, useState } from "react";
 import WhiteButton from "../../components/Buttons/WhiteButton";
 import AuthInput from "../../components/Inputs/AuthInput";
 import { Link, useNavigate } from "react-router-dom";
-import Layout from "../../components/Layout";
 import { UserContext } from "../../context";
 import BoxModel from "../../components/BoxModel";
 
 const Login = () => {
 	const navigate = useNavigate();
-	const { login, setUser } = useContext(UserContext);
+	const { login } = useContext(UserContext);
 	const [isOpenModel, setIsOpenModel] = useState(false);
 	const [formState, setFormState] = useState({
 		email: "",
@@ -36,7 +35,7 @@ const Login = () => {
 	};
 	const handleLoginSocial = (social: string) => {};
 	return (
-		<Layout>
+		<>
 			<div className="flex items-center justify-center min-h-screen">
 				{/* log in section */}
 				<div className="w-1/2 flex flex-col items-center mx-auto">
@@ -135,7 +134,7 @@ const Login = () => {
 					<h1 className="font-bold text-xl">Xác thực số điện thoại</h1>
 				</div>
 			</BoxModel>
-		</Layout>
+		</>
 	);
 };
 

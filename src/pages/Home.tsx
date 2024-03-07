@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Layout from "../components/Layout";
 import Banner from "../components/Banner";
 import { IoFilterOutline } from "react-icons/io5";
 import BoxModel from "../components/BoxModel";
 import Products from "../components/Product/Products";
 import WhiteButton from "../components/Buttons/WhiteButton";
+import { products } from "../constants/products";
 const filters = [
 	{
 		title: "Sắp xếp",
@@ -27,13 +27,17 @@ const filters = [
 		values: ["39"],
 	},
 ];
+
 const Home = () => {
 	const [isOpenFilterBox, setIsOpenFilterBox] = useState(false);
 	const handleFilter = () => {
 		setIsOpenFilterBox(!isOpenFilterBox);
 	};
 	return (
-		<Layout>
+		<div
+			className="
+			"
+		>
 			<Banner />
 			{/* products */}
 			<div className="px-[120px]">
@@ -49,7 +53,7 @@ const Home = () => {
 					</div>
 				</div>
 				{/* product cards */}
-				<Products />
+				<Products products={products} />
 				<div className="w-[360px] mx-auto">
 					<WhiteButton
 						rounded="full"
@@ -105,7 +109,7 @@ const Home = () => {
 					</div>
 				</BoxModel>
 			)}
-		</Layout>
+		</div>
 	);
 };
 

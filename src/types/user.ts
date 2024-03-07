@@ -24,6 +24,7 @@ export type Address = {
 };
 
 export type User = {
+	id: string | number;
 	name: string;
 	birthDate: Date;
 	gender: EGender;

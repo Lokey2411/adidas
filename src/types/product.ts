@@ -7,14 +7,14 @@ export type TProduct = {
 	category: string;
 	price: number;
 	comments: Comment[];
-	image: string;
-	departmentNum: number;
+	images: string[];
+	departments: string[];
 };
 
 export type Comment = {
 	commenter: User;
 	comment: string;
 	date: string;
-	tite: string;
+	title: string;
 	rate: number;
 };

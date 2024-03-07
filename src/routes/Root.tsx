@@ -1,20 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from "../context";
 import HomeRoute from "./HomeRoute";
 import AuthRoute from "./AuthRoute";
-import { useNavigate } from "react-router-dom";
+import Layout from "../components/Layout";
 
 const Root = () => {
 	const { user } = useContext(UserContext);
-	const navigate = useNavigate();
-	useEffect(() => {
-		if (window.location.href === "http://localhost:3000/") {
-			if (!user.password) {
-				navigate("/login");
-			}
-		}
-	}, [user, navigate]);
-	return user.password ? <HomeRoute /> : <AuthRoute />;
+
+	return <Layout>{user.password ? <HomeRoute /> : <AuthRoute />}</Layout>;
 };
 
 export default Root;

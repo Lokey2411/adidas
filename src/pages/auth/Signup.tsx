@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import WhiteButton from "../../components/Buttons/WhiteButton";
 import AuthInput from "../../components/Inputs/AuthInput";
-import Layout from "../../components/Layout";
 
 const Signup = () => {
 	const [formState, setFormState] = useState({
@@ -27,7 +26,7 @@ const Signup = () => {
 		e.preventDefault();
 	};
 	return (
-		<Layout>
+		<>
 			<div className="flex items-center justify-center min-h-screen">
 				{/* log in section */}
 				<div className="w-1/2 flex flex-col items-center mx-auto">
@@ -106,7 +105,7 @@ const Signup = () => {
 					</div>
 				</div>
 			</div>
-		</Layout>
+		</>
 	);
 };
 
