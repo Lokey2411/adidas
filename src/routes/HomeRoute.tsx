@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Detail from "../pages/Detail";
 import Profile from "../pages/Profile";
+import CartScreen from "../pages/CartScreen";
 
 const HomeRoute = () => {
 	return (
@@ -20,7 +21,11 @@ const HomeRoute = () => {
 			<Route
 				path="/profile/:id"
 				element={<Profile />}
-				key="detail"
+				key="profile"
+			/>
+			<Route
+				path="/cart"
+				element={<CartScreen />}
 			/>
 		</Routes>
 	);

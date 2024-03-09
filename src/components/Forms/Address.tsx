@@ -20,6 +20,18 @@ const Address = () => {
 		code: "",
 		phoneNumber: user.phoneNumber,
 	});
+	const [error, setError] = useState<any>({
+		fullName: false,
+		phoneNumber: false,
+		building: false,
+		city: false,
+		street: false,
+		strict: false,
+		guild: false,
+		code: false,
+	});
+	const keys = Object.keys(formState);
+
 	const onFormStateChange = (e: any) => {
 		setFormState({
 			...formState,
@@ -27,7 +39,22 @@ const Address = () => {
 		});
 	};
 	const onSubmit = (index = -1) => {
-		if (index > 0) {
+		console.log(index);
+		if (index >= 0) {
+			const n = keys.length;
+			for (let i = 0; i < n; i++) {
+				const key = keys[i];
+				// alert(formState[key]);
+				if (!formState[key]) {
+					setError((prev: any) => ({ ...prev, [key]: true }));
+				} else {
+					setError((prev: any) => ({ ...prev, [key]: false }));
+				}
+			}
+			if (keys.some((key) => error[key])) {
+				console.log("cc");
+				return;
+			}
 			const newUser = {
 				building: formState.building,
 				city: formState.city,
@@ -40,6 +67,17 @@ const Address = () => {
 			newModels[index] = !isOpenEditModel[index];
 			setisOpenEditModel(newModels);
 		} else {
+			const n = keys.length;
+			for (let i = 0; i < n; i++) {
+				const key = keys[i];
+				// alert(formState[key]);
+				if (!formState[key]) {
+					setError((prev: any) => ({ ...prev, [key]: true }));
+				} else {
+					setError((prev: any) => ({ ...prev, [key]: false }));
+				}
+			}
+			if (keys.find((key) => error[key])) return;
 			setUser({
 				...user,
 				address: [
@@ -58,6 +96,10 @@ const Address = () => {
 	const onCancel = () => {
 		setIsOpenModel(false);
 	};
+	const onDelete = (index: number) => {
+		const newUserAddress = user.address.filter((_, i) => i !== index);
+		setUser({ ...user, address: newUserAddress });
+	};
 	return (
 		<div className="bg-gray-200 rounded-lg p-4 w-full ml-4">
 			<h2 className="font-bold text-2xl">Sổ địa chỉ</h2>
@@ -70,7 +112,7 @@ const Address = () => {
 					<BoxModel
 						isOpenModel={isOpenEditModel[index]}
 						setIsOpenModel={(value: boolean) => {
-							let newModels = isOpenEditModel;
+							let newModels = [...isOpenEditModel]; // create a copy of the array
 							newModels[index] = value;
 							setisOpenEditModel(newModels);
 						}}
@@ -91,7 +133,7 @@ const Address = () => {
 									onChange={onFormStateChange}
 									disabled
 								/>
-								{!formState.fullName && (
+								{error.fullName && (
 									<label
 										htmlFor="fullName"
 										className="text-red-500"
@@ -108,7 +150,7 @@ const Address = () => {
 									value={formState.street}
 									onChange={onFormStateChange}
 								/>
-								{!formState.street && (
+								{error.street && (
 									<label
 										htmlFor="street"
 										className="text-red-500"
@@ -125,7 +167,7 @@ const Address = () => {
 									value={formState.building}
 									onChange={onFormStateChange}
 								/>
-								{!formState.building && (
+								{error.building && (
 									<label
 										htmlFor="building"
 										className="text-red-500"
@@ -144,7 +186,7 @@ const Address = () => {
 											value={formState.city}
 											onChange={onFormStateChange}
 										/>
-										{!formState.city && (
+										{error.city && (
 											<label
 												htmlFor="city"
 												className="text-red-500"
@@ -163,7 +205,7 @@ const Address = () => {
 											value={formState.strict}
 											onChange={onFormStateChange}
 										/>
-										{!formState.strict && (
+										{error.strict && (
 											<label
 												htmlFor="strict"
 												className="text-red-500"
@@ -182,7 +224,7 @@ const Address = () => {
 											value={formState.guild}
 											onChange={onFormStateChange}
 										/>
-										{!formState.guild && (
+										{error.guild && (
 											<label
 												htmlFor="guild"
 												className="text-red-500"
@@ -201,7 +243,7 @@ const Address = () => {
 											value={formState.code}
 											onChange={onFormStateChange}
 										/>
-										{!formState.code && (
+										{error.code && (
 											<label
 												htmlFor="code"
 												className="text-red-500"
@@ -221,7 +263,7 @@ const Address = () => {
 									disabled
 									onChange={onFormStateChange}
 								/>
-								{!formState.phoneNumber && (
+								{error.phoneNumber && (
 									<label
 										htmlFor="phoneNumber"
 										className="text-red-500"
@@ -238,7 +280,11 @@ const Address = () => {
 							</button>
 							<button
 								className="border border-black rounded-md py-2 px-4 ml-3 font-medium"
-								onClick={onCancel}
+								onClick={() => {
+									let newModels = [...isOpenEditModel]; // create a copy of the array
+									newModels[index] = !isOpenEditModel[index];
+									setisOpenEditModel(newModels);
+								}}
 							>
 								Hủy
 							</button>
@@ -257,14 +303,19 @@ const Address = () => {
 							<button
 								className="cursor-pointer border border-black rounded-lg px-4 py-2 mr-4"
 								onClick={() => {
-									let newModels = isOpenEditModel;
+									let newModels = [...isOpenEditModel]; // create a copy of the array
 									newModels[index] = !isOpenEditModel[index];
 									setisOpenEditModel(newModels);
 								}}
 							>
 								Chỉnh sửa
 							</button>
-							<button className="cursor-pointer border border-black rounded-lg px-4 py-2 mr-4">Xóa</button>
+							<button
+								onClick={() => onDelete(index)}
+								className="cursor-pointer border border-black rounded-lg px-4 py-2 mr-4"
+							>
+								Xóa
+							</button>
 						</div>
 					</div>
 				</div>
@@ -298,7 +349,7 @@ const Address = () => {
 							onChange={onFormStateChange}
 							disabled
 						/>
-						{!formState.fullName && (
+						{error.fullName && (
 							<label
 								htmlFor="fullName"
 								className="text-red-500"
@@ -315,7 +366,7 @@ const Address = () => {
 							value={formState.street}
 							onChange={onFormStateChange}
 						/>
-						{!formState.street && (
+						{error.street && (
 							<label
 								htmlFor="street"
 								className="text-red-500"
@@ -332,7 +383,7 @@ const Address = () => {
 							value={formState.building}
 							onChange={onFormStateChange}
 						/>
-						{!formState.building && (
+						{error.building && (
 							<label
 								htmlFor="building"
 								className="text-red-500"
@@ -351,7 +402,7 @@ const Address = () => {
 									value={formState.city}
 									onChange={onFormStateChange}
 								/>
-								{!formState.city && (
+								{error.city && (
 									<label
 										htmlFor="city"
 										className="text-red-500"
@@ -370,7 +421,7 @@ const Address = () => {
 									value={formState.strict}
 									onChange={onFormStateChange}
 								/>
-								{!formState.strict && (
+								{error.strict && (
 									<label
 										htmlFor="strict"
 										className="text-red-500"
@@ -389,7 +440,7 @@ const Address = () => {
 									value={formState.guild}
 									onChange={onFormStateChange}
 								/>
-								{!formState.guild && (
+								{error.guild && (
 									<label
 										htmlFor="guild"
 										className="text-red-500"
@@ -408,7 +459,7 @@ const Address = () => {
 									value={formState.code}
 									onChange={onFormStateChange}
 								/>
-								{!formState.code && (
+								{error.code && (
 									<label
 										htmlFor="code"
 										className="text-red-500"
@@ -428,7 +479,7 @@ const Address = () => {
 							disabled
 							onChange={onFormStateChange}
 						/>
-						{!formState.phoneNumber && (
+						{error.phoneNumber && (
 							<label
 								htmlFor="phoneNumber"
 								className="text-red-500"

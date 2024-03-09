@@ -5,6 +5,7 @@ import { EGender } from "../types/user";
 export const products: TProduct[] = [
 	{
 		name: "Adidas",
+		remain: 10,
 		status: "Đang kinh doanh",
 		id: 1,
 		category: "Sneaker",
@@ -38,6 +39,18 @@ export const products: TProduct[] = [
 	},
 	{
 		name: "Adidas",
+		remain: 0,
+		status: "Đang kinh doanh",
+		id: 2,
+		category: "Sneaker",
+		price: 100000,
+		comments: [],
+		images: ["https://kallos.co/cdn/shop/products/giay-adidas-edge-gameday-black-white-kallos-vietnam-1.jpg?v=1676072174&width=2400", "https://kallos.co/cdn/shop/products/giay-adidas-edge-gameday-black-white-kallos-vietnam-1.jpg?v=1676072174&width=2400", "https://kallos.co/cdn/shop/products/giay-adidas-edge-gameday-black-white-kallos-vietnam-1.jpg?v=1676072174&width=2400", "https://kallos.co/cdn/shop/products/giay-adidas-edge-gameday-black-white-kallos-vietnam-1.jpg?v=1676072174&width=2400"],
+		departments: ["35", "36", "37", "38"],
+	},
+	{
+		name: "Adidas",
+		remain: 10,
 		status: "Đang kinh doanh",
 		id: 1,
 		category: "Sneaker",
@@ -48,6 +61,7 @@ export const products: TProduct[] = [
 	},
 	{
 		name: "Adidas",
+		remain: 10,
 		status: "Đang kinh doanh",
 		id: 1,
 		category: "Sneaker",
@@ -58,6 +72,7 @@ export const products: TProduct[] = [
 	},
 	{
 		name: "Adidas",
+		remain: 10,
 		status: "Đang kinh doanh",
 		id: 1,
 		category: "Sneaker",
@@ -68,6 +83,7 @@ export const products: TProduct[] = [
 	},
 	{
 		name: "Adidas",
+		remain: 10,
 		status: "Đang kinh doanh",
 		id: 1,
 		category: "Sneaker",
@@ -78,16 +94,7 @@ export const products: TProduct[] = [
 	},
 	{
 		name: "Adidas",
-		status: "Đang kinh doanh",
-		id: 1,
-		category: "Sneaker",
-		price: 100000,
-		comments: [],
-		images: ["https://kallos.co/cdn/shop/products/giay-adidas-edge-gameday-black-white-kallos-vietnam-1.jpg?v=1676072174&width=2400", "https://kallos.co/cdn/shop/products/giay-adidas-edge-gameday-black-white-kallos-vietnam-1.jpg?v=1676072174&width=2400", "https://kallos.co/cdn/shop/products/giay-adidas-edge-gameday-black-white-kallos-vietnam-1.jpg?v=1676072174&width=2400", "https://kallos.co/cdn/shop/products/giay-adidas-edge-gameday-black-white-kallos-vietnam-1.jpg?v=1676072174&width=2400"],
-		departments: ["35", "36", "37", "38"],
-	},
-	{
-		name: "Adidas",
+		remain: 10,
 		status: "Đang kinh doanh",
 		id: 1,
 		category: "Sneaker",

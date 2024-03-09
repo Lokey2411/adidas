@@ -3,13 +3,14 @@ import { BsStarHalf } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import React, { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { products } from "../constants/products";
 import { Comment } from "../types/product";
 import { UserContext } from "../context";
 import moment from "moment";
 
 const Detail = () => {
+	const navigate = useNavigate();
 	const { id } = useParams();
 	const { user } = useContext(UserContext);
 	const [bannerIndex, setBannerIndex] = useState(0);
@@ -107,13 +108,14 @@ const Detail = () => {
 							</div>
 						))}
 					</div>
+					{item.remain <= 0 && <button className="bg-red-500 text-white rounded-lg px-3 py-2 text-3xl mb-4">Hết hàng</button>}
 					<button
-						onClick={() => console.log(item)}
+						onClick={() => navigate("/cart", { state: item })}
 						className="bg-black text-white hover:opacity-70 rounded-full px-8 py-3 font-semibold mx-auto text-xl w-full mb-4 cursor-pointer"
 					>
 						Cho vào giỏ hàng
 					</button>
-					<button className="bg-white rounded-full px-8 py-3 font-semibold mx-auto text-xl border border-black w-full flex items-center justify-center cursor-pointerr">
+					<button className="bg-white rounded-full px-8 py-3 font-semibold mx-auto text-xl border border-black w-full flex items-center justify-center cursor-pointer hover:bg-[#FFB6C1]">
 						Yêu thích
 						<AiOutlineHeart className="ml-2 text-2xl" />
 					</button>

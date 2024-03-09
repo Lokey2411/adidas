@@ -6,6 +6,7 @@ export type TProduct = {
 	id: string | number;
 	category: string;
 	price: number;
+	remain: number;
 	comments: Comment[];
 	images: string[];
 	departments: string[];
