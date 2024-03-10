@@ -1,8 +1,8 @@
-import CartScreen from "./pages/CartScreen";
+import CartScreen from "./components/Cart";
 import Root from "./routes/Root";
 function App() {
-  // return <Root />;
-  return <CartScreen />;
+	return <Root />;
+	// return <CartScreen />;
 }
 
 export default App;

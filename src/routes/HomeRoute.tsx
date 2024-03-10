@@ -3,7 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Detail from "../pages/Detail";
 import Profile from "../pages/Profile";
-import CartScreen from "../pages/CartScreen";
+import CartScreen from "../components/Cart";
+import Follow from "../pages/Follow";
+import Completed from "../pages/Completed";
 
 const HomeRoute = () => {
 	return (
@@ -24,8 +26,12 @@ const HomeRoute = () => {
 				key="profile"
 			/>
 			<Route
-				path="/cart"
-				element={<CartScreen />}
+				path="/follow"
+				element={<Follow />}
+			/>
+			<Route
+				path="/completed"
+				element={<Completed />}
 			/>
 		</Routes>
 	);

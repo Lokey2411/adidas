@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context";
 import BoxModel from "../BoxModel";
+import Cart from "../Cart";
 const categories = [
 	{
 		item: "Nam",
@@ -35,6 +36,7 @@ const Navbar = () => {
 	const isLoggedIn = !!user.password;
 	const defaultPage = "/login";
 	const [isOpenSearchModel, setIsOpenSearchModel] = useState(false);
+	const [isOpenCartModel, setIsOpenCartModel] = useState(false);
 	return (
 		<div className="flex items-center justify-between shadow-lg px-[120px]">
 			{/* logo */}
@@ -81,8 +83,19 @@ const Navbar = () => {
 					className="text-2xl cursor-pointer"
 					onClick={() => navigate(isLoggedIn ? `/profile/${user.id}` : defaultPage)}
 				/>
-				<FaRegHeart className="text-2xl cursor-pointer" />
+				<FaRegHeart
+					className="text-2xl cursor-pointer"
+					onClick={() => {
+						setIsOpenCartModel(true);
+					}}
+				/>
 				<MdOutlineShoppingCart className="text-2xl cursor-pointer" />
+			</div>
+			<div
+				className={`bg-[rgba(0,0,0,0.1)]  z-50 fixed top-0 right-0 left-0 bottom-0 flex flex-col ${!isOpenCartModel && "hidden"} cursor-default`}
+				onClick={() => setIsOpenCartModel(false)}
+			>
+				<Cart />
 			</div>
 		</div>
 	);

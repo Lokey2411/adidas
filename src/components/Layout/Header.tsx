@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 	return (
 		<div>
 			<div className="bg-white flex justify-between px-[120px] items-center py-3">
-				<p className="cursor-pointer">Theo dõi đơn hàng</p>
+				<Link to={"/follow"}>
+					<p className="cursor-pointer select-none">Theo dõi đơn hàng</p>
+				</Link>
 				<p className="cursor-pointer">Trợ giúp</p>
 			</div>
 			<div className="bg-black text-white font-semibold flex justify-center py-3">Trả hàng dễ dàng</div>
