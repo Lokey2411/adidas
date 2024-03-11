@@ -110,7 +110,10 @@ const Detail = () => {
 					</div>
 					{item.remain <= 0 && <button className="bg-red-500 text-white rounded-lg px-3 py-2 text-3xl mb-4">Hết hàng</button>}
 					<button
-						onClick={() => navigate("/cart", { state: item })}
+						onClick={() => {
+							if (item.remain <= 0) alert("Sản phẩm đã hết hàng");
+							else navigate("/follow");
+						}}
 						className="bg-black text-white hover:opacity-70 rounded-full px-8 py-3 font-semibold mx-auto text-xl w-full mb-4 cursor-pointer"
 					>
 						Cho vào giỏ hàng

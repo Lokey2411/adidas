@@ -22,12 +22,12 @@ const OrderStatus = () => {
 						</div>
 					))}
 				</div>
-				<div className="flex justify-between mt-2">
+				<div className="flex justify-between mt-4">
 					{statuses.map((status, index) => (
 						<button
 							key={index}
 							onClick={() => handleStatusChange(index)}
-							className={`text-sm ${statusIndex === index ? "text-blue-500 font-bold" : "text-gray-500"}`}
+							className={`text-sm ${statusIndex >= index ? "text-blue-500 font-bold" : "text-gray-500"}`}
 						>
 							{status}
 						</button>

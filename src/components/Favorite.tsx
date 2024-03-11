@@ -10,7 +10,7 @@ const cart = {
 	],
 };
 
-function Cart() {
+function Favorite() {
 	const initQuantities = cart.products.map((item) => item.quantity);
 	const [quantities, setQuantities] = useState<number[]>(initQuantities);
 	const [isSelected, setIsSelected] = useState<boolean[]>([]);
@@ -43,7 +43,7 @@ function Cart() {
 			onClick={(e) => e.stopPropagation()}
 		>
 			<div className="">
-				<p className="font-bold">Giỏ hàng</p>
+				<p className="font-bold">Danh sách yêu thích</p>
 			</div>
 			<div className="flex justify-between">
 				<div>
@@ -65,9 +65,7 @@ function Cart() {
 						Chọn tất cả
 					</label>
 				</div>
-				<div>
-					<p className="font-bold">số lượng : {cart.products.length}</p>
-				</div>
+				<h3 className="font-medium text-medium">Số lượng: {cart.products.length}</h3>
 			</div>
 			{cart.products.map((item, index) => (
 				<div
@@ -110,28 +108,9 @@ function Cart() {
 							</p>
 						</div>
 						<div className="flex flex-col">
-							<label htmlFor="">Số lượng</label>
-							<div className="flex items-center">
-								<input
-									className="rounded-lg text-center bg-white py-2  w-full"
-									type="text"
-									value={quantities[index]}
-									disabled
-								/>
-								<div
-									onClick={() => Increment(index)}
-									className="mx-2 cursor-pointer select-none p-2"
-								>
-									+
-								</div>
-								<div
-									onClick={() => Decrement(index)}
-									className="mx-2 cursor-pointer select-none p-2"
-								>
-									-
-								</div>
-							</div>
-							<button className="border border-black rounded-lg px-6 py-1 mt-3">Xóa</button>
+							<Link to={"/detail/" + item.product.id}>
+								<button className="border border-black rounded-lg px-6 py-1 mt-3">Xem chi tiết</button>
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -141,13 +120,11 @@ function Cart() {
 					Tổng tiền : <span>{total.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
 				</p>
 			</div>
-			<div className="flex justify-around mt-3">
-				<button className=" bg-white text-black hover:opacity-70 hover:bg-red-500 rounded-lg px-8 py-3 font-semibold mx-auto text-xl border border-black  w-1/7 mb-4 cursor-pointer">Thanh toán</button>
-
-				<button className=" bg-white text-black hover:opacity-70 hover:bg-red-500 rounded-lg px-8 py-3 font-semibold mx-auto text-xl border border-black  w-1/7 mb-4 cursor-pointer">Xóa</button>
+			<div className="flex justify-around">
+				<button className=" bg-white text-black hover:opacity-70 hover:bg-red-500 rounded-lg px-8 py-3 font-semibold mx-auto text-xl w-full mb-4 border border-black cursor-pointer">Xóa</button>
 			</div>
 		</div>
 	);
 }
 
-export default Cart;
+export default Favorite;
